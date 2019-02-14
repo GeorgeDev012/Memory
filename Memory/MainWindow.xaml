@@ -5,8 +5,17 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Memory"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
+        Title="MainWindow" Height="200" Width="200">
     <Grid>
-        
+        <Grid.RowDefinitions>
+            <RowDefinition Height="76*" />
+            <RowDefinition Height="Auto" MinHeight="36" />
+            <RowDefinition Height="10*" />
+            <RowDefinition Height="47*"/>
+        </Grid.RowDefinitions>
+        <Label Content="Insert your name:" Grid.Row="0" VerticalAlignment="Center" HorizontalAlignment="Center" Height="26" Margin="45,25" Width="102"/>
+        <TextBox Grid.Row="1" Width="100" VerticalAlignment="Center" HorizontalAlignment="Center" Height="18" Margin="46,8,46,10"/>
+        <Button Grid.Row="2" Click="Button_Click" Margin="45,0,45,25" Grid.RowSpan="2">Submit</Button>
+
     </Grid>
 </Window>
