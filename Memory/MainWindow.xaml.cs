@@ -27,7 +27,12 @@ namespace Memory
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
-
+            if (!(textBox.Text == String.Empty))
+            {
+                SecondWindow win2 = new SecondWindow();
+                win2.Show();
+                this.Hide();
+            }
         }
     }
 }

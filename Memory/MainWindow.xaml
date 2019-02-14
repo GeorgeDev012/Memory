@@ -24,7 +24,7 @@
             <RowDefinition Height="Auto"/>
         </Grid.RowDefinitions>
         <Label Content="Insert your name:" Grid.Row="0" VerticalAlignment="Center" HorizontalAlignment="Center" Margin="20" />
-        <TextBox Grid.Row="1" Width="100" VerticalAlignment="Center" HorizontalAlignment="Center" Height="18" Margin="46,8,46,10"/>
+        <TextBox Name="textBox" Grid.Row="1" Width="100" VerticalAlignment="Center" HorizontalAlignment="Center" Height="18" Margin="46,8,46,10"/>
         <Button Grid.Row="2" Click="Button_Click" Width="100" Height="30" Grid.RowSpan="2" FontFamily="Comic Sans MS" FontSize="14">Submit</Button>
 
     </Grid>
