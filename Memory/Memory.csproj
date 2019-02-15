@@ -110,8 +110,8 @@
     <Resource Include="Resources\duck4.jpg" />
     <Resource Include="Resources\duck5.jpg" />
     <Resource Include="Resources\duck6.jpg" />
-    <Resource Include="Resources\duck7.gif" />
-    <Resource Include="Resources\duck8.png" />
+    <Content Include="Resources\duck7.jpg" />
+    <Content Include="Resources\duck8.jpg" />
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Resources\card.jpg" />

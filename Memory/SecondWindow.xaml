@@ -5,10 +5,9 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Memory"
         mc:Ignorable="d"
-        Title="SecondWinow" Height="450" Width="800">
-    <Grid>
-        <Grid Name="grid1" SizeChanged="Grid1_SizeChanged">
-            <Grid.RowDefinitions>
+        Title="SecondWinow" Height="700" Width="550">
+    <Grid Name="grid1" SizeChanged="Grid1_SizeChanged">
+        <Grid.RowDefinitions>
                 <RowDefinition />
                 <RowDefinition />
                 <RowDefinition/>
@@ -20,6 +19,38 @@
                 <ColumnDefinition/>
                 <ColumnDefinition/>
             </Grid.ColumnDefinitions>
-        </Grid>
+
+        <Image Name="image1" Grid.Row="0" Grid.Column="0" Source="C:\Users\George\source\repos\Memory\Memory\Resources\card.jpg"
+               MouseDown="Image_MouseDown"/>
+        <Image Name="image2" Grid.Row="0" Grid.Column="1" Source="C:\Users\George\source\repos\Memory\Memory\Resources\card.jpg"
+               MouseDown="Image_MouseDown"/>
+        <Image Name="image3" Grid.Row="0" Grid.Column="2" Source="C:\Users\George\source\repos\Memory\Memory\Resources\card.jpg"
+               MouseDown="Image_MouseDown"/>
+        <Image Name="image4" Grid.Row="0" Grid.Column="3" Source="C:\Users\George\source\repos\Memory\Memory\Resources\card.jpg"
+               MouseDown="Image_MouseDown"/>
+        <Image Name="image5" Grid.Row="1" Grid.Column="0" Source="C:\Users\George\source\repos\Memory\Memory\Resources\card.jpg"
+               MouseDown="Image_MouseDown"/>
+        <Image Name="image6" Grid.Row="1" Grid.Column="1" Source="C:\Users\George\source\repos\Memory\Memory\Resources\card.jpg"
+               MouseDown="Image_MouseDown"/>
+        <Image Name="image7" Grid.Row="1" Grid.Column="2" Source="C:\Users\George\source\repos\Memory\Memory\Resources\card.jpg"
+               MouseDown="Image_MouseDown"/>
+        <Image Name="image8" Grid.Row="1" Grid.Column="3" Source="C:\Users\George\source\repos\Memory\Memory\Resources\card.jpg"
+               MouseDown="Image_MouseDown"/>
+        <Image Name="image9" Grid.Row="2" Grid.Column="0" Source="C:\Users\George\source\repos\Memory\Memory\Resources\card.jpg"
+               MouseDown="Image_MouseDown"/>
+        <Image Name="image10" Grid.Row="2" Grid.Column="1" Source="C:\Users\George\source\repos\Memory\Memory\Resources\card.jpg"
+               MouseDown="Image_MouseDown"/>
+        <Image Name="image11" Grid.Row="2" Grid.Column="2" Source="C:\Users\George\source\repos\Memory\Memory\Resources\card.jpg"
+               MouseDown="Image_MouseDown"/>
+        <Image Name="image12" Grid.Row="2" Grid.Column="3" Source="C:\Users\George\source\repos\Memory\Memory\Resources\card.jpg"
+               MouseDown="Image_MouseDown"/>
+        <Image Name="image13" Grid.Row="3" Grid.Column="0" Source="C:\Users\George\source\repos\Memory\Memory\Resources\card.jpg"
+               MouseDown="Image_MouseDown"/>
+        <Image Name="image14" Grid.Row="3" Grid.Column="1" Source="C:\Users\George\source\repos\Memory\Memory\Resources\card.jpg"
+               MouseDown="Image_MouseDown"/>
+        <Image Name="image15" Grid.Row="3" Grid.Column="2" Source="C:\Users\George\source\repos\Memory\Memory\Resources\card.jpg"
+               MouseDown="Image_MouseDown"/>
+        <Image Name="image16" Grid.Row="3" Grid.Column="3" Source="C:\Users\George\source\repos\Memory\Memory\Resources\card.jpg"
+               MouseDown="Image_MouseDown"/>
     </Grid>
 </Window>

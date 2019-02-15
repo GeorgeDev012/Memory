@@ -31,7 +31,7 @@ namespace Memory
             {
                 SecondWindow win2 = new SecondWindow();
                 win2.Show();
-                this.Hide();
+                this.Close();
             }
         }
     }
