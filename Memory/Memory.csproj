@@ -102,7 +102,19 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="duck.jpg" />
+    <Resource Include="Resources\duck1.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\duck2.jpg" />
+    <Resource Include="Resources\duck3.jpg" />
+    <Resource Include="Resources\duck4.jpg" />
+    <Resource Include="Resources\duck5.jpg" />
+    <Resource Include="Resources\duck6.jpg" />
+    <Resource Include="Resources\duck7.gif" />
+    <Resource Include="Resources\duck8.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\card.jpg" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
