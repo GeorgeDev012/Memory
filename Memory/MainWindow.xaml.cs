@@ -20,17 +20,20 @@ namespace Memory
     /// </summary>
     public partial class MainWindow : Window
     {
+        public static MainWindow _mainWindow;
+        public static SecondWindow _win2;
         public MainWindow()
         {
             InitializeComponent();
+            _mainWindow = this;
         }
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
             if (!(textBox.Text == String.Empty))
             {
-                SecondWindow win2 = new SecondWindow();
-                win2.Show();
+                _win2 = new SecondWindow();
+                _win2.Show();
                 this.Close();
             }
         }

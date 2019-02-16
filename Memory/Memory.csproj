@@ -55,9 +55,19 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="HighscoreWindow.xaml.cs">
+      <DependentUpon>HighscoreWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="PlayersScoreWindow.xaml.cs">
+      <DependentUpon>PlayersScoreWindow.xaml</DependentUpon>
+    </Compile>
     <Compile Include="SecondWindow.xaml.cs">
       <DependentUpon>SecondWindow.xaml</DependentUpon>
     </Compile>
+    <Page Include="HighscoreWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -70,6 +80,10 @@
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Page Include="PlayersScoreWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="SecondWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -110,6 +124,7 @@
     <Resource Include="Resources\duck4.jpg" />
     <Resource Include="Resources\duck5.jpg" />
     <Resource Include="Resources\duck6.jpg" />
+    <Resource Include="Resources\brain.png" />
     <Content Include="Resources\duck7.jpg" />
     <Content Include="Resources\duck8.jpg" />
   </ItemGroup>

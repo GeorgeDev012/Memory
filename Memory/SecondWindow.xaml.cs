@@ -53,17 +53,19 @@ namespace Memory
         DispatcherTimer _timer = new DispatcherTimer();
         Stopwatch _stopwatch = new Stopwatch();
         string _currentTime = string.Empty;
+        public static PlayersScoreWindow _playersScoreWindow;
+
 
         public SecondWindow()
         {
             InitializeComponent();
             GenerateRandomDuckArray();
-            _timer.Tick += new EventHandler(timerTick);
+            _timer.Tick += new EventHandler(Timer_Tick);
             _stopwatch.Start();
             _timer.Start();
         }
 
-        private void timerTick(object sender, EventArgs e)
+        private void Timer_Tick(object sender, EventArgs e)
         {
             if(_stopwatch.IsRunning)
             {
@@ -90,6 +92,13 @@ namespace Memory
                 {
                     _numberOfReversedImages = 0;
                     var comparison = AreImagesTheSame((Image)sender, _previousImage);
+                    if (_correctlyReversedDuck.All(b => b == true))
+                    {
+                        _stopwatch.Stop();
+                        _playersScoreWindow = new PlayersScoreWindow();
+                        _playersScoreWindow.Show();
+                        this.Close();
+                    }
                     if (!comparison)
                     {
                         Dispatcher.BeginInvoke(DispatcherPriority.Input, new ThreadStart(() =>
