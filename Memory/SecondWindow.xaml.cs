@@ -45,8 +45,9 @@ namespace Memory
         string[] randomDucks = new string[16];
         bool[] wasDuck = new bool[16];
         bool[] correctlyReversedDuck = new bool[16];
-        int numberOfImages = 0;
-        private Image lastImage;
+        int numberOfReversedImages = 0;
+        private Image previousImage;
+        private int clicks = 0;
 
         public SecondWindow()
         {
@@ -60,22 +61,18 @@ namespace Memory
         {
             
             var number = getNumberFromName((Image)sender);
-            if (!correctlyReversedDuck[number - 1])
+            if (!correctlyReversedDuck[number - 1] && numberOfReversedImages == 0 || ((Image)sender).Name != previousImage.Name)
             {
                 ((Image)sender).Source = new BitmapImage(
                                             new Uri(randomDucks[number - 1]));
-
-                numberOfImages++;
-                if (numberOfImages == 1) lastImage = (Image)sender;
-                if (numberOfImages == 2)
+                clicks++;
+                numberOfReversedImages++;
+                if (numberOfReversedImages == 1) previousImage = (Image)sender;
+                else if (numberOfReversedImages == 2)
                 {
-                    numberOfImages = 0;
-                    var comparison = AreImagesTheSame((Image)sender, lastImage);
-                    if (comparison)
-                    {
-
-                    }
-                    else
+                    numberOfReversedImages = 0;
+                    var comparison = AreImagesTheSame((Image)sender, previousImage);
+                    if (!comparison)
                     {
                         Dispatcher.BeginInvoke(System.Windows.Threading.DispatcherPriority.Input, new ThreadStart(() =>
                         {
@@ -94,7 +91,7 @@ namespace Memory
         {
             ImageSource source = new BitmapImage(new Uri(CardSource));
             ((Image)sender).Source = source;
-            lastImage.Source = source;
+            previousImage.Source = source;
         }
 
         private int GetNotExistingDuck()
