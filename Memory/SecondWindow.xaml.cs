@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Text.RegularExpressions;
@@ -13,6 +14,7 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using System.Windows.Threading;
 
 namespace Memory
 {
@@ -48,14 +50,30 @@ namespace Memory
         int _numberOfReversedImages = 0;
         private Image _previousImage;
         private int _clicks = 0;
+        DispatcherTimer _timer = new DispatcherTimer();
+        Stopwatch _stopwatch = new Stopwatch();
+        string _currentTime = string.Empty;
 
         public SecondWindow()
         {
             InitializeComponent();
             GenerateRandomDuckArray();
+            _timer.Tick += new EventHandler(timerTick);
+            _stopwatch.Start();
+            _timer.Start();
         }
 
+        private void timerTick(object sender, EventArgs e)
+        {
+            if(_stopwatch.IsRunning)
+            {
+                TimeSpan timeSpan = _stopwatch.Elapsed;
+                _currentTime = string.Format("{0:00}:{1:00}:{2:00}", timeSpan.Minutes, 
+                                                            timeSpan.Seconds, timeSpan.Milliseconds / 10);
+                clockTextBlock.Text = _currentTime;
 
+            }
+        }
 
         private void Image_MouseDown(object sender, MouseButtonEventArgs e)
         {
@@ -74,7 +92,7 @@ namespace Memory
                     var comparison = AreImagesTheSame((Image)sender, _previousImage);
                     if (!comparison)
                     {
-                        Dispatcher.BeginInvoke(System.Windows.Threading.DispatcherPriority.Input, new ThreadStart(() =>
+                        Dispatcher.BeginInvoke(DispatcherPriority.Input, new ThreadStart(() =>
                         {
                             Thread.Sleep(800);
                             ChangeIncorrectImages(sender);
