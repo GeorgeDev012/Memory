@@ -20,7 +20,7 @@ namespace Memory
     /// </summary>
     public partial class SecondWindow : Window
     {
-        string CardSource { get; set; } = @"C:\Users\George\source\repos\Memory\Memory\Resources\card.jpg";
+        string CardSource { get; } = @"C:\Users\George\source\repos\Memory\Memory\Resources\card.jpg";
         string[] ducks =
         {
             @"C:\Users\George\source\repos\Memory\Memory\Resources\duck1.jpg",
@@ -42,37 +42,46 @@ namespace Memory
         };
         string[] randomDucks = new string[16];
         bool[] wasDuck = new bool[16];
+        Image lastImage;
+        int numberOfImages = 0;
 
         public SecondWindow()
         {
             InitializeComponent();
-            GenerateDuckArray();
+            GenerateRandomDuckArray();
         }
 
         
 
-        private MouseButtonEventHandler DoJob(ref Image image)
-        {
-            image.Source = new BitmapImage(new Uri(@"C:\Users\George\source\repos\Memory\Memory\Resources\duck1.jpg"));
-            return null;
-        }
-
-        private void Grid1_SizeChanged(object sender, SizeChangedEventArgs e)
-        {
-
-        }
-
         private void Image_MouseDown(object sender, MouseButtonEventArgs e)
         {
             
-                var name = ((Image)sender).Name;
-                var stringNumber = Regex.Match(name, @"\d+").Value;
-                var number = Int32.Parse(stringNumber);
+            var name = ((Image)sender).Name;
+            var stringNumber = Regex.Match(name, @"\d+").Value;
+            var number = Int32.Parse(stringNumber);
 
-                ((Image)sender).Source = new BitmapImage(
+            ((Image)sender).Source = new BitmapImage(
                                         new Uri(randomDucks[number - 1]));
-            
-            
+
+            numberOfImages++;
+            if (numberOfImages == 1) lastImage = (Image)sender;
+            if (numberOfImages == 2)
+            {
+                numberOfImages = 0;
+                var comparison = AreImagesTheSame((Image)sender, lastImage);
+                if(comparison)
+                {
+
+                }
+                else
+                {
+                    ImageSource source = new BitmapImage(new Uri(CardSource));
+                    ((Image)sender).Source = source;
+                    lastImage.Source = source;
+                }
+            }
+
+
         }
 
         private int GetNotExistingDuck()
@@ -93,7 +102,7 @@ namespace Memory
             return value;
         }
 
-        private void GenerateDuckArray()
+        private void GenerateRandomDuckArray()
         {
             if (wasDuck.Any(w => !w))
             {
@@ -104,5 +113,22 @@ namespace Memory
                 }
             }
         }
+
+        private bool AreImagesTheSame(Image image1, Image image2)
+        {
+            var number = getNumberFromName(image1);
+            var number2 = getNumberFromName(image2);
+
+            if (randomDucks[number - 1].Equals(randomDucks[number2 - 1])) return true;
+            else return false;
+        }
+
+        private int getNumberFromName(Image image)
+        {
+            var name = image.Name;
+            var stringNumber = Regex.Match(name, @"\d+").Value;
+            return Int32.Parse(stringNumber);
+        }
+       
     }
 }

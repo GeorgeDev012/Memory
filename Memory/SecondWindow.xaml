@@ -6,7 +6,7 @@
         xmlns:local="clr-namespace:Memory"
         mc:Ignorable="d"
         Title="SecondWinow" Height="700" Width="550">
-    <Grid Name="grid1" SizeChanged="Grid1_SizeChanged">
+    <Grid Name="grid1" >
         <Grid.RowDefinitions>
                 <RowDefinition />
                 <RowDefinition />
