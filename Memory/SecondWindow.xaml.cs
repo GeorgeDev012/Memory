@@ -23,7 +23,7 @@ namespace Memory
     {
         string CardSource { get; } = @"C:\Users\George\source\repos\Memory\Memory\Resources\card.jpg";
 
-        readonly string[] ducks =
+        readonly string[] _ducks =
         {
             @"C:\Users\George\source\repos\Memory\Memory\Resources\duck1.jpg",
             @"C:\Users\George\source\repos\Memory\Memory\Resources\duck1.jpg",
@@ -42,12 +42,12 @@ namespace Memory
             @"C:\Users\George\source\repos\Memory\Memory\Resources\duck8.jpg",
             @"C:\Users\George\source\repos\Memory\Memory\Resources\duck8.jpg"
         };
-        string[] randomDucks = new string[16];
-        bool[] wasDuck = new bool[16];
-        bool[] correctlyReversedDuck = new bool[16];
-        int numberOfReversedImages = 0;
-        private Image previousImage;
-        private int clicks = 0;
+        string[] _randomDucks = new string[16];
+        bool[] _wasDuck = new bool[16];
+        bool[] _correctlyReversedDuck = new bool[16];
+        int _numberOfReversedImages = 0;
+        private Image _previousImage;
+        private int _clicks = 0;
 
         public SecondWindow()
         {
@@ -61,17 +61,17 @@ namespace Memory
         {
             
             var number = getNumberFromName((Image)sender);
-            if (!correctlyReversedDuck[number - 1] && numberOfReversedImages == 0 || ((Image)sender).Name != previousImage.Name)
+            if (!_correctlyReversedDuck[number - 1] && _numberOfReversedImages == 0 || ((Image)sender).Name != _previousImage.Name)
             {
                 ((Image)sender).Source = new BitmapImage(
-                                            new Uri(randomDucks[number - 1]));
-                clicks++;
-                numberOfReversedImages++;
-                if (numberOfReversedImages == 1) previousImage = (Image)sender;
-                else if (numberOfReversedImages == 2)
+                                            new Uri(_randomDucks[number - 1]));
+                _clicks++;
+                _numberOfReversedImages++;
+                if (_numberOfReversedImages == 1) _previousImage = (Image)sender;
+                else if (_numberOfReversedImages == 2)
                 {
-                    numberOfReversedImages = 0;
-                    var comparison = AreImagesTheSame((Image)sender, previousImage);
+                    _numberOfReversedImages = 0;
+                    var comparison = AreImagesTheSame((Image)sender, _previousImage);
                     if (!comparison)
                     {
                         Dispatcher.BeginInvoke(System.Windows.Threading.DispatcherPriority.Input, new ThreadStart(() =>
@@ -91,7 +91,7 @@ namespace Memory
         {
             ImageSource source = new BitmapImage(new Uri(CardSource));
             ((Image)sender).Source = source;
-            previousImage.Source = source;
+            _previousImage.Source = source;
         }
 
         private int GetNotExistingDuck()
@@ -101,25 +101,25 @@ namespace Memory
             do
             {
                 value = random.Next(16);
-                if (!wasDuck[value])
+                if (!_wasDuck[value])
                 {
-                    wasDuck[value] = true;
+                    _wasDuck[value] = true;
                     i++;
                 }
                 
-            } while ((!wasDuck[value] || i < 1));
+            } while ((!_wasDuck[value] || i < 1));
 
             return value;
         }
 
         private void GenerateRandomDuckArray()
         {
-            if (wasDuck.Any(w => !w))
+            if (_wasDuck.Any(w => !w))
             {
-                for (int i = 0; i < randomDucks.Length; i++)
+                for (int i = 0; i < _randomDucks.Length; i++)
                 {
                     var value = GetNotExistingDuck();
-                    randomDucks[i] = ducks[value];
+                    _randomDucks[i] = _ducks[value];
                 }
             }
         }
@@ -129,10 +129,10 @@ namespace Memory
             var number = getNumberFromName(image1);
             var number2 = getNumberFromName(image2);
 
-            if (randomDucks[number - 1].Equals(randomDucks[number2 - 1]))
+            if (_randomDucks[number - 1].Equals(_randomDucks[number2 - 1]))
             {
-                correctlyReversedDuck[number - 1] = true;
-                correctlyReversedDuck[number2 - 1] = true;
+                _correctlyReversedDuck[number - 1] = true;
+                _correctlyReversedDuck[number2 - 1] = true;
                 return true;
             }
             else return false;
