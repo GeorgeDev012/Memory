@@ -54,6 +54,6 @@
         <Image Name="image16" Grid.Row="3" Grid.Column="3" Source="C:\Users\George\source\repos\Memory\Memory\Resources\card.jpg"
                MouseDown="Image_MouseDown"/>
         <TextBlock Name="clockTextBlock" HorizontalAlignment="Center" FontSize="24" Grid.Row="4" Grid.ColumnSpan="2"/>
-        <TextBlock Name="numberOfClicksTextBlock" FontSize="24" Grid.Row="4" Grid.Column="2" Grid.ColumnSpan="2"/>
+        <TextBlock Name="numberOfClicksTextBlock" HorizontalAlignment="Center" FontSize="24" Grid.Row="4" Grid.Column="2" Grid.ColumnSpan="2"/>
     </Grid>
 </Window>

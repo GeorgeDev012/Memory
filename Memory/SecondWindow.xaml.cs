@@ -71,7 +71,7 @@ namespace Memory
                 _currentTime = string.Format("{0:00}:{1:00}:{2:00}", timeSpan.Minutes, 
                                                             timeSpan.Seconds, timeSpan.Milliseconds / 10);
                 clockTextBlock.Text = _currentTime;
-
+                numberOfClicksTextBlock.Text = _clicks.ToString();
             }
         }
 
@@ -79,7 +79,7 @@ namespace Memory
         {
             
             var number = getNumberFromName((Image)sender);
-            if (!_correctlyReversedDuck[number - 1] && _numberOfReversedImages == 0 || ((Image)sender).Name != _previousImage.Name)
+            if (!_correctlyReversedDuck[number - 1] && (_numberOfReversedImages == 0 || ((Image)sender).Name != _previousImage.Name))
             {
                 ((Image)sender).Source = new BitmapImage(
                                             new Uri(_randomDucks[number - 1]));
