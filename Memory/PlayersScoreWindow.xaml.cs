@@ -28,8 +28,21 @@ namespace Memory
         private void SetTextBlocks()
         {
             nameTextBlock.Text = MainWindow._mainWindow.textBox.Text;
-            timeTextBlock.Text = MainWindow._win2.clockTextBlock.Text;
-            clicksTextBlock.Text = MainWindow._win2.numberOfClicksTextBlock.Text;
+            timeTextBlock.Text = MainWindow._secondWindow.clockTextBlock.Text;
+            clicksTextBlock.Text = MainWindow._secondWindow.numberOfClicksTextBlock.Text;
+        }
+
+        private void Highscore_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void Play_Again_Button(object sender, RoutedEventArgs e)
+        {
+            MainWindow._mainWindow = new MainWindow();
+            this.Close();
+            MainWindow._mainWindow.Show();
+            
         }
     }
 }

@@ -46,7 +46,7 @@ namespace Memory
         };
         string[] _randomDucks = new string[16];
         bool[] _wasDuck = new bool[16];
-        bool[] _correctlyReversedDuck = new bool[16];
+        bool[] _correctlyReversedDucks = new bool[16];
         int _numberOfReversedImages = 0;
         private Image _previousImage;
         private int _clicks = 0;
@@ -80,8 +80,8 @@ namespace Memory
         private void Image_MouseDown(object sender, MouseButtonEventArgs e)
         {
             
-            var number = getNumberFromName((Image)sender);
-            if (!_correctlyReversedDuck[number - 1] && (_numberOfReversedImages == 0 || ((Image)sender).Name != _previousImage.Name))
+            var number = GetNumberFromName((Image)sender);
+            if (!_correctlyReversedDucks[number - 1] && (_numberOfReversedImages == 0 || ((Image)sender).Name != _previousImage.Name))
             {
                 ((Image)sender).Source = new BitmapImage(
                                             new Uri(_randomDucks[number - 1]));
@@ -92,7 +92,7 @@ namespace Memory
                 {
                     _numberOfReversedImages = 0;
                     var comparison = AreImagesTheSame((Image)sender, _previousImage);
-                    if (_correctlyReversedDuck.All(b => b == true))
+                    if (_correctlyReversedDucks.All(b => b == true))
                     {
                         _stopwatch.Stop();
                         _playersScoreWindow = new PlayersScoreWindow();
@@ -153,24 +153,26 @@ namespace Memory
 
         private bool AreImagesTheSame(Image image1, Image image2)
         {
-            var number = getNumberFromName(image1);
-            var number2 = getNumberFromName(image2);
+            var number = GetNumberFromName(image1);
+            var number2 = GetNumberFromName(image2);
 
             if (_randomDucks[number - 1].Equals(_randomDucks[number2 - 1]))
             {
-                _correctlyReversedDuck[number - 1] = true;
-                _correctlyReversedDuck[number2 - 1] = true;
+                _correctlyReversedDucks[number - 1] = true;
+                _correctlyReversedDucks[number2 - 1] = true;
                 return true;
             }
             else return false;
         }
 
-        private int getNumberFromName(Image image)
+        private int GetNumberFromName(Image image)
         {
             var name = image.Name;
             var stringNumber = Regex.Match(name, @"\d+").Value;
             return Int32.Parse(stringNumber);
         }
        
+
+
     }
 }

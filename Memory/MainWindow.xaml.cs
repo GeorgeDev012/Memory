@@ -21,7 +21,7 @@ namespace Memory
     public partial class MainWindow : Window
     {
         public static MainWindow _mainWindow;
-        public static SecondWindow _win2;
+        public static SecondWindow _secondWindow;
         public MainWindow()
         {
             InitializeComponent();
@@ -32,8 +32,8 @@ namespace Memory
         {
             if (!(textBox.Text == String.Empty))
             {
-                _win2 = new SecondWindow();
-                _win2.Show();
+                _secondWindow = new SecondWindow();
+                _secondWindow.Show();
                 this.Close();
             }
         }

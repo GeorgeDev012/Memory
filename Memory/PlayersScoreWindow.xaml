@@ -25,6 +25,7 @@
             <RowDefinition/>
             <RowDefinition/>
             <RowDefinition/>
+            <RowDefinition/>
         </Grid.RowDefinitions>
         <Grid.ColumnDefinitions >
             <ColumnDefinition />
@@ -37,6 +38,7 @@
         <TextBlock Name="timeTextBlock" Grid.Row="2" Grid.Column="1" />
         <TextBlock Grid.Row="3" Grid.Column="0" Text="Clicks: "  />
         <TextBlock Name="clicksTextBlock" Grid.Row="3" Grid.Column="1" />
-        <Button Grid.Row="4" Grid.ColumnSpan="2" FontSize="24">Check highscores</Button>
+        <Button Grid.Row="4" Grid.ColumnSpan="2" FontSize="24" Click="Highscore_Click">Check highscores</Button>
+        <Button Grid.Row="5" Grid.ColumnSpan="2" FontSize="24" Click="Play_Again_Button">PlayAgain</Button>
     </Grid>
 </Window>
