@@ -23,26 +23,26 @@ namespace Memory
     /// </summary>
     public partial class SecondWindow : Window
     {
-        string CardSource { get; } = @"C:\Users\George\source\repos\Memory\Memory\Resources\card.jpg";
+        string CardSource { get; } = @".\Resources\card.jpg";
 
         readonly string[] _ducks =
         {
-            @"C:\Users\George\source\repos\Memory\Memory\Resources\duck1.jpg",
-            @"C:\Users\George\source\repos\Memory\Memory\Resources\duck1.jpg",
-            @"C:\Users\George\source\repos\Memory\Memory\Resources\duck2.jpg",
-            @"C:\Users\George\source\repos\Memory\Memory\Resources\duck2.jpg",
-            @"C:\Users\George\source\repos\Memory\Memory\Resources\duck3.jpg",
-            @"C:\Users\George\source\repos\Memory\Memory\Resources\duck3.jpg",
-            @"C:\Users\George\source\repos\Memory\Memory\Resources\duck4.jpg",
-            @"C:\Users\George\source\repos\Memory\Memory\Resources\duck4.jpg",
-            @"C:\Users\George\source\repos\Memory\Memory\Resources\duck5.jpg",
-            @"C:\Users\George\source\repos\Memory\Memory\Resources\duck5.jpg",
-            @"C:\Users\George\source\repos\Memory\Memory\Resources\duck6.jpg",
-            @"C:\Users\George\source\repos\Memory\Memory\Resources\duck6.jpg",
-            @"C:\Users\George\source\repos\Memory\Memory\Resources\duck7.jpg",
-            @"C:\Users\George\source\repos\Memory\Memory\Resources\duck7.jpg",
-            @"C:\Users\George\source\repos\Memory\Memory\Resources\duck8.jpg",
-            @"C:\Users\George\source\repos\Memory\Memory\Resources\duck8.jpg"
+            @".\Resources\duck1.jpg",
+            @".\Resources\duck1.jpg",
+            @".\Resources\duck2.jpg",
+            @".\Resources\duck2.jpg",
+            @".\Resources\duck3.jpg",
+            @".\Resources\duck3.jpg",
+            @".\Resources\duck4.jpg",
+            @".\Resources\duck4.jpg",
+            @".\Resources\duck5.jpg",
+            @".\Resources\duck5.jpg",
+            @".\Resources\duck6.jpg",
+            @".\Resources\duck6.jpg",
+            @".\Resources\duck7.jpg",
+            @".\Resources\duck7.jpg",
+            @".\Resources\duck8.jpg",
+            @".\Resources\duck8.jpg"
         };
         string[] _randomDucks = new string[16];
         bool[] _alreadyChosenDuck = new bool[16];
@@ -84,7 +84,7 @@ namespace Memory
             if (!_correctlyReversedDucks[number - 1] && (_numberOfReversedImages == 0 || ((Image)sender).Name != _previousImage.Name))
             {
                 ((Image)sender).Source = new BitmapImage(
-                                            new Uri(_randomDucks[number - 1]));
+                                            new Uri(_randomDucks[number - 1], UriKind.Relative));
                 _clicks++;
                 _numberOfReversedImages++;
                 if (_numberOfReversedImages == 1) _previousImage = (Image)sender;
@@ -116,7 +116,7 @@ namespace Memory
 
         private void ChangeIncorrectImages(object sender)
         {
-            ImageSource source = new BitmapImage(new Uri(CardSource));
+            ImageSource source = new BitmapImage(new Uri(CardSource, UriKind.Relative));
             ((Image)sender).Source = source;
             _previousImage.Source = source;
         }
@@ -141,7 +141,7 @@ namespace Memory
 
         private void GenerateRandomDuckArray()
         {
-            if (_alreadyChosenDuck.Any(w => !w))
+            if (_alreadyChosenDuck.Any(w => w == false))
             {
                 for (int i = 0; i < _randomDucks.Length; i++)
                 {

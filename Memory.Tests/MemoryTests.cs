@@ -21,22 +21,25 @@ namespace Memory.Tests
             image1.Name = "image1";
 
             var number = obj.Invoke("GetNumberFromName", image1);
-            Assert.AreEqual(number, 1);
+            Assert.AreEqual(1, number);
         }
 
-        //[TestMethod]
-        //public void CheckIfImagesAreTheSame()
-        //{
-        //    SecondWindow secondWindow = new SecondWindow();
-        //    PrivateObject obj = new PrivateObject(secondWindow);
+        [TestMethod]
+        public void CheckIfImagesAreTheSame()
+        {
+            SecondWindow secondWindow = new SecondWindow();
+            PrivateObject obj = new PrivateObject(secondWindow);
 
-        //    Image image1 = new Image();
-        //    image1.Name = "image1";
-        //    Image image2 = new Image();
-        //    image2.Name = "image2";
+            Image image1 = new Image();
+            image1.Name = "image1";
+            Image image2 = new Image();
+            image2.Name = "image2";
 
-        //    obj.Invoke("AreImagesTheSame", image1, image2);
-            
-        //}
+            obj.SetArrayElement("_randomDucks", @".\Resources\duck1.jpg", 0);
+            obj.SetArrayElement("_randomDucks", @".\Resources\duck2.jpg", 1);
+
+            bool areTheSame = (bool) obj.Invoke("AreImagesTheSame", image1, image2);
+            Assert.IsTrue(areTheSame);
+        }
     }
 }

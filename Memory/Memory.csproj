@@ -128,14 +128,16 @@
     <Resource Include="Resources\duck5.jpg" />
     <Resource Include="Resources\duck6.jpg" />
     <Resource Include="Resources\brain.png" />
-    <Content Include="Resources\duck7.jpg" />
-    <Content Include="Resources\duck8.jpg" />
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Resources\card.jpg" />
   </ItemGroup>
   <ItemGroup>
     <WCFMetadata Include="Connected Services\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\duck7.jpg" />
+    <Resource Include="Resources\duck8.jpg" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
