@@ -45,7 +45,7 @@ namespace Memory
             @"C:\Users\George\source\repos\Memory\Memory\Resources\duck8.jpg"
         };
         string[] _randomDucks = new string[16];
-        bool[] _wasDuck = new bool[16];
+        bool[] _alreadyChosenDuck = new bool[16];
         bool[] _correctlyReversedDucks = new bool[16];
         int _numberOfReversedImages = 0;
         Image _previousImage;
@@ -128,20 +128,20 @@ namespace Memory
             do
             {
                 value = random.Next(16);
-                if (!_wasDuck[value])
+                if (!_alreadyChosenDuck[value])
                 {
-                    _wasDuck[value] = true;
+                    _alreadyChosenDuck[value] = true;
                     i++;
                 }
                 
-            } while ((!_wasDuck[value] || i < 1));
+            } while ((!_alreadyChosenDuck[value] || i < 1));
 
             return value;
         }
 
         private void GenerateRandomDuckArray()
         {
-            if (_wasDuck.Any(w => !w))
+            if (_alreadyChosenDuck.Any(w => !w))
             {
                 for (int i = 0; i < _randomDucks.Length; i++)
                 {
