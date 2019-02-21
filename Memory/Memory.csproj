@@ -113,12 +113,15 @@
     </None>
   </ItemGroup>
   <ItemGroup>
-    <None Include="App.config" />
+    <None Include="App.config">
+      <SubType>Designer</SubType>
+    </None>
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Resources\duck1.jpg" />
   </ItemGroup>
   <ItemGroup>
+    <Resource Include="Resources\brain.ico" />
     <Resource Include="Resources\duck2.jpg" />
     <Resource Include="Resources\duck3.jpg" />
     <Resource Include="Resources\duck4.jpg" />
@@ -131,5 +134,12 @@
   <ItemGroup>
     <Resource Include="Resources\card.jpg" />
   </ItemGroup>
+  <ItemGroup>
+    <WCFMetadata Include="Connected Services\" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <PropertyGroup>
+    <PostBuildEvent>
+    </PostBuildEvent>
+  </PropertyGroup>
 </Project>

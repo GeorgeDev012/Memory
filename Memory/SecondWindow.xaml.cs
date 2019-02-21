@@ -48,12 +48,12 @@ namespace Memory
         bool[] _wasDuck = new bool[16];
         bool[] _correctlyReversedDucks = new bool[16];
         int _numberOfReversedImages = 0;
-        private Image _previousImage;
-        private int _clicks = 0;
+        Image _previousImage;
+        int _clicks = 0;
         DispatcherTimer _timer = new DispatcherTimer();
         Stopwatch _stopwatch = new Stopwatch();
         string _currentTime = string.Empty;
-        public static PlayersScoreWindow _playersScoreWindow;
+        public static PlayersScoreWindow _PlayersScoreWindow;
 
 
         public SecondWindow()
@@ -95,8 +95,8 @@ namespace Memory
                     if (_correctlyReversedDucks.All(b => b == true))
                     {
                         _stopwatch.Stop();
-                        _playersScoreWindow = new PlayersScoreWindow();
-                        _playersScoreWindow.Show();
+                        _PlayersScoreWindow = new PlayersScoreWindow();
+                        _PlayersScoreWindow.Show();
                         this.Close();
                     }
                     if (!comparison)
@@ -171,8 +171,5 @@ namespace Memory
             var stringNumber = Regex.Match(name, @"\d+").Value;
             return Int32.Parse(stringNumber);
         }
-       
-
-
     }
 }
