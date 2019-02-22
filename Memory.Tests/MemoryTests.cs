@@ -12,16 +12,17 @@ namespace Memory.Tests
     public class MemoryTests
     {
         [TestMethod]
-        public void CheckIfCorrectNumberFromName()
+        public void CheckIfRandomDuckArrayIsGenerated()
         {
             SecondWindow secondWindow = new SecondWindow();
             PrivateObject obj = new PrivateObject(secondWindow);
 
-            Image image1 = new Image();
-            image1.Name = "image1";
-
-            var number = obj.Invoke("GetNumberFromName", image1);
-            Assert.AreEqual(1, number);
+            obj.Invoke("GenerateRandomDuckArray");
+            for (int i = 0; i < 16; i++)
+            {
+                string randomDuck = (string)obj.GetArrayElement("_randomDucks", i);
+                Assert.AreNotEqual(null, randomDuck);
+            }
         }
 
         [TestMethod]
@@ -36,10 +37,24 @@ namespace Memory.Tests
             image2.Name = "image2";
 
             obj.SetArrayElement("_randomDucks", @".\Resources\duck1.jpg", 0);
-            obj.SetArrayElement("_randomDucks", @".\Resources\duck2.jpg", 1);
+            obj.SetArrayElement("_randomDucks", @".\Resources\duck1.jpg", 1);
 
             bool areTheSame = (bool) obj.Invoke("AreImagesTheSame", image1, image2);
             Assert.IsTrue(areTheSame);
         }
+
+        [TestMethod]
+        public void CheckIfCorrectNumberFromName()
+        {
+            SecondWindow secondWindow = new SecondWindow();
+            PrivateObject obj = new PrivateObject(secondWindow);
+
+            Image image1 = new Image();
+            image1.Name = "image1";
+
+            var number = obj.Invoke("GetNumberFromName", image1);
+            Assert.AreEqual(1, number);
+        }
+
     }
 }
