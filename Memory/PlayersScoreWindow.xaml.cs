@@ -27,14 +27,14 @@ namespace Memory
 
         private void SetTextBlocks()
         {
-            nameTextBlock.Text = MainWindow._mainWindow.textBox.Text;
+            nameTextBlock.Text = MainWindow._mainWindow.nameTextBox.Text;
             timeTextBlock.Text = MainWindow._secondWindow.clockTextBlock.Text;
             clicksTextBlock.Text = MainWindow._secondWindow.numberOfClicksTextBlock.Text;
         }
 
         private void Highscore_Click(object sender, RoutedEventArgs e)
         {
-
+            HighscoreWindow._highscoreWindow = new HighscoreWindow();
         }
 
         private void Play_Again_Button(object sender, RoutedEventArgs e)

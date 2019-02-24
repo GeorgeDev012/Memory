@@ -19,6 +19,8 @@ namespace Memory
     /// </summary>
     public partial class HighscoreWindow : Window
     {
+        internal static HighscoreWindow _highscoreWindow;
+
         public HighscoreWindow()
         {
             InitializeComponent();

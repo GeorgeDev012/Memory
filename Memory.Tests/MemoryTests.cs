@@ -16,8 +16,7 @@ namespace Memory.Tests
         {
             SecondWindow secondWindow = new SecondWindow();
             PrivateObject obj = new PrivateObject(secondWindow);
-
-            obj.Invoke("GenerateRandomDuckArray");
+            
             for (int i = 0; i < 16; i++)
             {
                 string randomDuck = (string)obj.GetArrayElement("_randomDucks", i);

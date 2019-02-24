@@ -30,7 +30,7 @@ namespace Memory
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
-            if (!(textBox.Text == String.Empty))
+            if (!(nameTextBox.Text == String.Empty))
             {
                 _secondWindow = new SecondWindow();
                 _secondWindow.Show();

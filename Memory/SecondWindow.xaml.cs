@@ -53,14 +53,15 @@ namespace Memory
         DispatcherTimer _timer = new DispatcherTimer();
         Stopwatch _stopwatch = new Stopwatch();
         string _currentTime = string.Empty;
-        public static PlayersScoreWindow _PlayersScoreWindow;
+        internal static PlayersScoreWindow _PlayersScoreWindow;
+        internal static List<Tuple<string, int, string>> _Highscores;
 
 
         public SecondWindow()
         {
             InitializeComponent();
             GenerateRandomDuckArray();
-            _timer.Tick += new EventHandler(Timer_Tick);
+            _timer.Tick += Timer_Tick;
             _stopwatch.Start();
             _timer.Start();
         }
@@ -95,6 +96,8 @@ namespace Memory
                     if (_correctlyReversedDucks.All(b => b == true))
                     {
                         _stopwatch.Stop();
+                        AddScoresToHighscoreList();
+                        SortHighscoreList();
                         _PlayersScoreWindow = new PlayersScoreWindow();
                         _PlayersScoreWindow.Show();
                         this.Close();
@@ -112,6 +115,23 @@ namespace Memory
             }
 
 
+        }
+
+        private void AddScoresToHighscoreList()
+        {
+            var playerName = MainWindow._mainWindow.nameTextBox.Text;
+            var numberOfClicks = Convert.ToInt32(MainWindow._secondWindow.numberOfClicksTextBlock.Text);
+            var timePassed = MainWindow._secondWindow.clockTextBlock.Text;
+
+            _Highscores.Add(new Tuple<string, int, string> (playerName, numberOfClicks, timePassed));
+        }
+
+        private void SortHighscoreList()
+        {
+            _Highscores.Sort((x, y) => {
+                int result = y.Item2.CompareTo(x.Item2);
+                return result == 0 ? y.Item3.CompareTo(x.Item3) : result;
+            });
         }
 
         private void ChangeIncorrectImages(object sender)
