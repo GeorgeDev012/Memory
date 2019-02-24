@@ -58,6 +58,7 @@
     <Compile Include="HighscoreWindow.xaml.cs">
       <DependentUpon>HighscoreWindow.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Player.cs" />
     <Compile Include="PlayersScoreWindow.xaml.cs">
       <DependentUpon>PlayersScoreWindow.xaml</DependentUpon>
     </Compile>

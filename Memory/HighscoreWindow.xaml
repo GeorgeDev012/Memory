@@ -7,6 +7,12 @@
         mc:Ignorable="d"
         Title="Memory" Height="450" Width="800" Icon="C:\Users\George\source\repos\Memory\Memory\Resources\brain.ico">
     <Grid>
-        
+        <DataGrid Name="HighscoreDatagrid" ItemsSource="{Binding}" AutoGenerateColumns="False">
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="Name" Binding="{Binding Name}" />
+                <DataGridTextColumn Header="Click count" Binding="{Binding ClickCount}" />
+                <DataGridTextColumn Header="Time elapsed" Binding="{Binding TimePassed}" />
+            </DataGrid.Columns>
+        </DataGrid>
     </Grid>
 </Window>

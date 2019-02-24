@@ -35,6 +35,8 @@ namespace Memory
         private void Highscore_Click(object sender, RoutedEventArgs e)
         {
             HighscoreWindow._highscoreWindow = new HighscoreWindow();
+            this.Close();
+            HighscoreWindow._highscoreWindow.Show();
         }
 
         private void Play_Again_Button(object sender, RoutedEventArgs e)

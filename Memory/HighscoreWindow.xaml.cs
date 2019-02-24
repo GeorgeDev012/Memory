@@ -24,6 +24,7 @@ namespace Memory
         public HighscoreWindow()
         {
             InitializeComponent();
+            HighscoreDatagrid.DataContext = SecondWindow._Highscores;
         }
     }
 }

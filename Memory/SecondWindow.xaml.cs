@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Diagnostics;
 using System.Linq;
 using System.Text;
@@ -54,7 +55,7 @@ namespace Memory
         Stopwatch _stopwatch = new Stopwatch();
         string _currentTime = string.Empty;
         internal static PlayersScoreWindow _PlayersScoreWindow;
-        internal static List<Tuple<string, int, string>> _Highscores;
+        internal static ObservableCollection<Player> _Highscores = new ObservableCollection<Player>();
 
 
         public SecondWindow()
@@ -97,7 +98,7 @@ namespace Memory
                     {
                         _stopwatch.Stop();
                         AddScoresToHighscoreList();
-                        SortHighscoreList();
+                        //SortHighscoreList();
                         _PlayersScoreWindow = new PlayersScoreWindow();
                         _PlayersScoreWindow.Show();
                         this.Close();
@@ -113,8 +114,6 @@ namespace Memory
                     }
                 }
             }
-
-
         }
 
         private void AddScoresToHighscoreList()
@@ -123,16 +122,18 @@ namespace Memory
             var numberOfClicks = Convert.ToInt32(MainWindow._secondWindow.numberOfClicksTextBlock.Text);
             var timePassed = MainWindow._secondWindow.clockTextBlock.Text;
 
-            _Highscores.Add(new Tuple<string, int, string> (playerName, numberOfClicks, timePassed));
+            Player player = new Player{ Name = playerName, ClickCount = numberOfClicks, TimePassed = timePassed };
+            _Highscores.Add(player);
         }
 
-        private void SortHighscoreList()
-        {
-            _Highscores.Sort((x, y) => {
-                int result = y.Item2.CompareTo(x.Item2);
-                return result == 0 ? y.Item3.CompareTo(x.Item3) : result;
-            });
-        }
+        //private void SortHighscoreList()
+        //{
+            
+        //    _Highscores.Sort((x, y) => {
+        //        int result = y.Item2.CompareTo(x.Item2);
+        //        return result == 0 ? y.Item3.CompareTo(x.Item3) : result;
+        //    });
+        //}
 
         private void ChangeIncorrectImages(object sender)
         {
