@@ -56,21 +56,21 @@ namespace Memory
         static internal ObservableCollection<Player> GetHighscores()
         {
             string serializationFile = "highscores.bin";
-            
+
             //serialize
             try
             {
                 Stream stream = File.Open(serializationFile, FileMode.Open);
                 //stream.Seek(0, SeekOrigin.Begin);
                 var bformatter = new System.Runtime.Serialization.Formatters.Binary.BinaryFormatter();
-                
-                ObservableCollection<Player> highscoreList = (ObservableCollection<Player>) bformatter.Deserialize(stream);
+
+                ObservableCollection<Player> highscoreList = (ObservableCollection<Player>)bformatter.Deserialize(stream);
 
                 stream.Close();
                 return highscoreList;
             }
             catch (FileNotFoundException)
-            {;
+            {
                 return new ObservableCollection<Player>();
             }
         }
