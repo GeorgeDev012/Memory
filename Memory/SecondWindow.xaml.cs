@@ -55,7 +55,7 @@ namespace Memory
         Stopwatch _stopwatch = new Stopwatch();
         string _currentTime = string.Empty;
         internal static PlayersScoreWindow _PlayersScoreWindow;
-        internal static ObservableCollection<Player> _Highscores = new ObservableCollection<Player>();
+        internal static ObservableCollection<Player> _Highscores = HighscoreWindow.GetHighscores();
 
 
         public SecondWindow()
@@ -98,6 +98,7 @@ namespace Memory
                     {
                         _stopwatch.Stop();
                         AddScoresToHighscoreList();
+                        HighscoreWindow.SaveHighscores();
                         //SortHighscoreList();
                         _PlayersScoreWindow = new PlayersScoreWindow();
                         _PlayersScoreWindow.Show();

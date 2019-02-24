@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 
 namespace Memory
 {
+    [Serializable]
     class Player
     {
         public string Name { get; set; }
