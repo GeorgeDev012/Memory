@@ -46,10 +46,17 @@ namespace Memory
             string serializationFile = "highscores.bin";
 
             //serialize
-            using (Stream stream = File.Open(serializationFile, FileMode.Create))
+            try
             {
+                Stream stream = File.Open(serializationFile, FileMode.Create);
+            
                 var bformatter = new System.Runtime.Serialization.Formatters.Binary.BinaryFormatter();
                 bformatter.Serialize(stream, SecondWindow._Highscores);
+
+            }
+            catch (UnauthorizedAccessException)
+            {
+                
             }
         }
 
@@ -70,6 +77,10 @@ namespace Memory
                 return highscoreList;
             }
             catch (FileNotFoundException)
+            {
+                return new ObservableCollection<Player>();
+            }
+            catch (UnauthorizedAccessException)
             {
                 return new ObservableCollection<Player>();
             }

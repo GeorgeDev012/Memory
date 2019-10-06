@@ -81,7 +81,6 @@ namespace Memory
 
         private void Image_MouseDown(object sender, MouseButtonEventArgs e)
         {
-            
             var number = GetNumberFromName((Image)sender);
             if (!_correctlyReversedDucks[number - 1] && (_numberOfReversedImages == 0 || ((Image)sender).Name != _previousImage.Name))
             {
@@ -99,7 +98,6 @@ namespace Memory
                         _stopwatch.Stop();
                         AddScoresToHighscoreList();
                         HighscoreWindow.SaveHighscores();
-                        //SortHighscoreList();
                         _PlayersScoreWindow = new PlayersScoreWindow();
                         _PlayersScoreWindow.Show();
                         this.Close();
@@ -108,7 +106,6 @@ namespace Memory
                     {
                         Dispatcher.BeginInvoke(DispatcherPriority.Input, new ThreadStart(() =>
                         {
-                            Thread.Sleep(800);
                             ChangeIncorrectImages(sender);
                         }
                         ));
@@ -116,6 +113,7 @@ namespace Memory
                 }
             }
         }
+
 
         private void AddScoresToHighscoreList()
         {
@@ -136,11 +134,14 @@ namespace Memory
         //    });
         //}
 
-        private void ChangeIncorrectImages(object sender)
+        private async void ChangeIncorrectImages(object sender)
         {
+            RemoveMouseDownEventFromAllImages();
+            await Task.Delay(800);
             ImageSource source = new BitmapImage(new Uri(CardSource, UriKind.Relative));
             ((Image)sender).Source = source;
             _previousImage.Source = source;
+            AddMouseDownEventToAllImages();
         }
 
         private int GetNotExistingDuck()
@@ -192,6 +193,28 @@ namespace Memory
             var name = image.Name;
             var stringNumber = Regex.Match(name, @"\d+").Value;
             return Int32.Parse(stringNumber);
+        }
+
+        private void AddMouseDownEventToAllImages()
+        {
+            Image[] ducks = new Image[16];
+
+            for (int i = 1; i <= ducks.Length; i++)
+            {
+                ducks[i - 1] = (Image)this.FindName("image" + i);
+                ducks[i - 1].MouseDown += Image_MouseDown;
+            }
+        }
+
+        private void RemoveMouseDownEventFromAllImages()
+        {
+            Image[] ducks = new Image[16];
+
+            for (int i = 1; i <= ducks.Length; i++)
+            {
+                ducks[i - 1] = (Image)this.FindName("image" + i);
+                ducks[i - 1].MouseDown -= Image_MouseDown;
+            }
         }
     }
 }
